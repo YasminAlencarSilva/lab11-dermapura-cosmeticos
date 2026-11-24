@@ -1,4 +1,3 @@
-
 name: CI-CD - DermaPura Cosméticos
 
 on:
@@ -8,10 +7,44 @@ on:
   workflow_dispatch:
 
 jobs:
+  # ETAPA 1 - CI: valida a página e testa o container antes de publicar
+  test:
+    name: CI - Validar e testar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar codigo do repositorio
+        uses: actions/checkout@v4
+
+      - name: Validar arquivos obrigatorios
+        run: |
+          test -f index.html
+          test -f Dockerfile
+          grep -q "DermaPura" index.html
+          grep -q "INSTANCE_LABEL" index.html
+
+      - name: Construir imagem de teste
+        run: docker build -t dermapura-test --build-arg INSTANCE_LABEL=dermapura-web-01 .
+
+      - name: Subir container e testar resposta HTTP
+        run: |
+          docker run -d --name teste -p 8080:80 dermapura-test
+          sleep 5
+          curl -f http://localhost:8080 | grep -q "DermaPura"
+          curl -s http://localhost:8080 | grep -q "dermapura-web-01"
+
+      - name: Registrar evidencia de validacao
+        run: |
+          echo "## Validacao automatizada (CSV)" >> $GITHUB_STEP_SUMMARY
+          echo "- Arquivos obrigatorios: OK" >> $GITHUB_STEP_SUMMARY
+          echo "- Build da imagem: OK" >> $GITHUB_STEP_SUMMARY
+          echo "- Resposta HTTP e rotulo da instancia: OK" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit validado: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+
+  # ETAPA 2 - Build e publicacao da imagem no Docker Hub
   build-and-push:
     name: Build and Push Docker Image
+    needs: test
     runs-on: ubuntu-latest
-
     steps:
       - name: Baixar codigo do repositorio
         uses: actions/checkout@v4
@@ -30,6 +63,27 @@ jobs:
         with:
           context: .
           push: true
+          build-args: |
+            INSTANCE_LABEL=dermapura-web-01
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/lab11-dermapura:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/lab11-dermapura:${{ github.sha }}
+
+  # ETAPA 3 - CD: deploy automatico na instancia EC2
+  deploy:
+    name: CD - Deploy na EC2
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/lab11-dermapura:latest
+            docker stop dermapura || true
+            docker rm dermapura || true
+            docker run -d --name dermapura --restart unless-stopped -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/lab11-dermapura:latest
+            docker ps

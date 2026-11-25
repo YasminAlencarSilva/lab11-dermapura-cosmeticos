@@ -29,8 +29,9 @@ jobs:
         run: |
           docker run -d --name teste -p 8080:80 dermapura-test
           sleep 5
-          curl -f http://localhost:8080 | grep -q "DermaPura"
-          curl -s http://localhost:8080 | grep -q "dermapura-web-01"
+          curl -fsS http://localhost:8080 -o pagina.html
+          grep -q "DermaPura" pagina.html
+          grep -q "dermapura-web-01" pagina.html
 
       - name: Registrar evidencia de validacao
         run: |

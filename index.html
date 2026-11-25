@@ -124,4 +124,152 @@
   footer h4{font-family:"Newsreader",serif;color:var(--lilac);font-size:1.1rem;margin-bottom:14px;font-weight:500}
   footer p,footer a{display:block;font-size:.92rem;margin-bottom:8px;color:#c2b3cb}
   footer a:hover{color:#fff}
-  .infra{border-top:1px solid
+  .infra{border-top:1px solid #45325a;background:#1d1124;font-size:.82rem}
+  .infra .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;padding:16px 28px;color:#a695b0}
+  .badge{background:var(--lilac);color:#3a1f47;padding:3px 11px;border-radius:6px;font-weight:700}
+  .dot{width:8px;height:8px;border-radius:50%;background:#7fe6a0;display:inline-block;margin-right:7px;box-shadow:0 0 8px #7fe6a0;animation:bl 1.6s infinite}
+
+  /* ANIMAÇÃO */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+  .rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a href="#topo" class="brand">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2s7 8 7 13a7 7 0 11-14 0c0-5 7-13 7-13zm0 6c-2 2.5-3 4.3-3 6a3 3 0 003 3z"/></svg>
+    DermaPura Cosméticos
+  </a>
+  <div class="nav-links">
+    <a href="#quem">Quem somos</a>
+    <a href="#qual">Qualidade</a>
+    <a href="#fab">Fábrica smart</a>
+    <a href="#contato" class="btn sm">Fale conosco</a>
+  </div>
+</div></nav>
+
+<header id="topo">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="wrap hero">
+    <div class="rv">
+      <span class="tag"><i></i>Skincare &amp; higiene pessoal · 24 anos</span>
+      <h1>Ciência que vira <em>cuidado</em>.</h1>
+      <p class="lede">Fabricante nacional de cosméticos e produtos de higiene pessoal, com 95 itens de skincare e cuidados diários produzidos sob rigor regulatório e rastreabilidade de lote. Cabreúva, São Paulo.</p>
+      <div class="actions">
+        <a href="#qual" class="btn">Compromisso com a qualidade →</a>
+        <a href="#fab" class="btn out">Conheça a fábrica</a>
+      </div>
+      <div class="trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Boas Práticas de Fabricação</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Exportação para 9 países</span>
+      </div>
+    </div>
+
+    <div class="panel rv">
+      <div class="panel-h"><span>Indicadores de produção</span><span class="live">Operando</span></div>
+      <div class="kpi">
+        <div class="kpi-row"><span>Disponibilidade do MES</span><b>98,1%</b></div>
+        <div class="bar"><i style="width:98.1%"></i></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-row"><span>Registros de lote digitais</span><b>50%</b></div>
+        <div class="bar"><i style="width:50%"></i></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-row"><span>POPs ativos</span><b>140</b></div>
+        <div class="bar"><i style="width:100%"></i></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="stats"><div class="wrap">
+  <div class="st"><b>95</b><small>produtos no portfólio</small></div>
+  <div class="st"><b>540</b><small>colaboradores</small></div>
+  <div class="st"><b>9 países</b><small>atendidos</small></div>
+  <div class="st"><b>R$ 540mi</b><small>receita anual</small></div>
+</div></div>
+
+<section id="quem"><div class="wrap">
+  <div class="rv">
+    <div class="eyebrow">Quem somos</div>
+    <h2>Beleza acessível, padrão internacional</h2>
+    <p class="lead">Há 24 anos no mercado, atendemos o Brasil e exportamos para 9 países da América Latina, sempre sob as Boas Práticas de Fabricação de cosméticos da Anvisa (RDC vigente).</p>
+  </div>
+  <div class="grid3">
+    <div class="card rv">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg></div>
+      <h3>Skincare &amp; higiene</h3>
+      <p>Portfólio de 95 apresentações, do desenvolvimento de fórmula ao registro, com estabilidade comprovada.</p>
+    </div>
+    <div class="card rv">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+      <h3>Rastreabilidade</h3>
+      <p>Identificação e rastreabilidade por lote de cada produto, da linha de envase ao consumidor.</p>
+    </div>
+    <div class="card rv">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
+      <h3>Exportação</h3>
+      <p>Presença consolidada em 9 países, com documentação e validação aceitas internacionalmente.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="qual"><div class="wrap qgrid">
+  <div class="rv">
+    <div class="eyebrow">Qualidade &amp; conformidade</div>
+    <h2>O rigor é parte da fórmula</h2>
+    <p class="lead">Cada sistema que toca a produção passa por validação documentada (CSV). Confiabilidade não é opcional em cosméticos.</p>
+    <ul class="checks">
+      <li>Boas Práticas de Fabricação (Anvisa)</li>
+      <li>Validação de sistemas computadorizados (CSV)</li>
+      <li>Registros de lote eletrônicos (batch records)</li>
+      <li>Disponibilidade do MES em 98,1%</li>
+      <li>140 procedimentos operacionais padrão (POPs) ativos</li>
+    </ul>
+  </div>
+  <div class="steps rv">
+    <div class="step"><b class="n">01</b><div><h3>Especificação</h3><p>Requisitos do sistema definidos e aprovados antes de qualquer implantação.</p></div></div>
+    <div class="step"><b class="n">02</b><div><h3>Qualificação</h3><p>Instalação, operação e desempenho verificados e documentados.</p></div></div>
+    <div class="step"><b class="n">03</b><div><h3>Operação controlada</h3><p>Procedimentos padrão e registros de lote com rastreabilidade completa.</p></div></div>
+    <div class="step"><b class="n">04</b><div><h3>Melhoria contínua</h3><p>Indicadores acompanhados e mudanças tratadas sob controle de alterações.</p></div></div>
+  </div>
+</div></section>
+
+<section id="fab"><div class="wrap">
+  <div class="rv">
+    <div class="eyebrow">Fábrica smart</div>
+    <h2>Automação a serviço da segurança</h2>
+    <p class="lead">Uma nova planta com R$ 70 milhões investidos: linha de envase automatizada com 48 PLCs, SCADA dedicado e MES integrado ao ERP corporativo.</p>
+  </div>
+  <div class="fab">
+    <div class="big rv"><b>48</b><h3>PLCs</h3><p>Na linha de envase totalmente automatizada.</p></div>
+    <div class="big rv"><b>R$ 70mi</b><h3>Investidos</h3><p>Na nova fábrica inteligente.</p></div>
+    <div class="big rv"><b>50%</b><h3>Registros digitais</h3><p>Dos registros de lote já são digitais, e o número segue crescendo.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="cta-band rv">
+    <div>
+      <h2>Quer conhecer a DermaPura de perto?</h2>
+      <p class="lead">Fale com nossa equipe comercial e de qualidade.</p>
+    </div>
+    <a href="#contato" class="btn">Entrar em contato →</a>
+  </div>
+</div></section>
+
+<footer id="contato">
+  <div class="wrap fgrid">
+    <div>
+      <h4>DermaPura Cosméticos</h4>
+      <p>Fabricante nacional de cosméticos e higiene pessoal, comprometida com qualidade, conformidade e segurança do consumidor.</p>
+      <p>Cabreúva · São Paulo · Brasil</p>
+    </div>
+    <div>
+      <h4>Atuação</h4>
+      <a>Mercado brasileiro</a>
+      <a>Exportação · 9 países</a>
+    </div>
+    <div>

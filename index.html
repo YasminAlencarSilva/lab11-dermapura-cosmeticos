@@ -273,3 +273,30 @@
       <a>Exportação · 9 países</a>
     </div>
     <div>
+      <h4>Contato</h4>
+      <a>contato@dermapura.exemplo</a>
+      <a>+55 11 0000-0000</a>
+    </div>
+  </div>
+  <div class="infra"><div class="wrap">
+    <span><span class="dot"></span>Servido por <span class="badge" id="host">web-srv-01</span></span>
+    <span>Uptime: <span id="up">00:00:00</span></span>
+    <span>DermaPura Cosméticos · ambiente de demonstração</span>
+  </div></div>
+</footer>
+
+<script>
+  /* >>> ALUNO: altere INSTANCE_LABEL em CADA instância EC2 para visualizar o Auto Scaling pelo balanceador <<< */
+  const INSTANCE_LABEL = "web-srv-01";
+  document.getElementById("host").textContent = INSTANCE_LABEL;
+  document.title = "DermaPura Cosméticos · " + INSTANCE_LABEL;
+  const t0=Date.now();
+  setInterval(()=>{const s=(Date.now()-t0)/1000|0;
+    document.getElementById("up").textContent=
+    [s/3600|0,s/60%60|0,s%60].map(n=>String(n).padStart(2,'0')).join(':');},1000);
+
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

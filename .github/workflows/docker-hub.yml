@@ -17,10 +17,13 @@ jobs:
 
       - name: Validar arquivos obrigatorios
         run: |
-          test -f index.html
-          test -f Dockerfile
-          grep -q "DermaPura" index.html
-          grep -q "INSTANCE_LABEL" index.html
+          echo "Arquivos na raiz do repositorio:"
+          ls -la
+          test -f index.html || { echo "FALHOU: index.html nao existe na raiz"; exit 1; }
+          test -f Dockerfile || { echo "FALHOU: Dockerfile nao existe na raiz"; exit 1; }
+          grep -q "DermaPura" index.html || { echo "FALHOU: texto DermaPura nao encontrado no index.html"; exit 1; }
+          grep -q "INSTANCE_LABEL" index.html || { echo "FALHOU: INSTANCE_LABEL nao encontrado no index.html"; exit 1; }
+          echo "Todas as verificacoes passaram"
 
       - name: Construir imagem de teste
         run: docker build -t dermapura-test --build-arg INSTANCE_LABEL=dermapura-web-01 .
